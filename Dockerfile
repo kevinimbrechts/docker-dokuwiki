@@ -35,13 +35,13 @@ WORKDIR /var/www/html/dokuwiki
 # Global installation
 RUN set -x && \
     apk add --no-cache --virtual mypack \
-            curl=7.64.1-r0 \
+            curl=7.64.0-r1 \
             gzip=1.10-r0 \
-            libpng-dev=1.6.35-r0 \
+            libpng-dev=1.6.37-r0 \
             jpeg-dev=8-r6 \
             nginx=1.14.2-r1 \
-            supervisor=3.3.5-r0 \
-            shadow=4.6-r1 \
+            supervisor=3.3.4-r1 \
+            shadow=4.5-r2 \
             tar=1.32-r0 && \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
     docker-php-ext-install gd
