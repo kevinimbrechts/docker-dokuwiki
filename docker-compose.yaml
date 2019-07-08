@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  dokuwiki:
+    image: dokuwiki
+    container_name: dokuwiki
+    restart: always
+    ports:
+      - '4443:4443'
+    volumes:
+      - dokuwiki_data:/var/www/html/dokuwiki/data/pages
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/nginx/ssl:/etc/nginx/ssl
+    networks:
+      utils-bridge:
+        ipv4_address: 172.18.0.2
+
+volumes:
+  dokuwiki_data: {}
+
+networks:
+  utils-bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
