@@ -35,13 +35,13 @@ WORKDIR /var/www/html/dokuwiki
 # Global installation
 RUN set -x && \
     apk add --no-cache --virtual mypack \
-            curl=7.64.0-r1 \
+            curl=7.65.1-r0 \
             gzip=1.10-r0 \
-            libpng-dev=1.6.37-r0 \
+            libpng-dev=1.6.37-r1 \
             jpeg-dev=8-r6 \
-            nginx=1.14.2-r1 \
-            supervisor=3.3.4-r1 \
-            shadow=4.5-r2 \
+            nginx=1.16.0-r2 \
+            supervisor=3.3.5-r0 \
+            shadow=4.6-r2 \
             tar=1.32-r0 && \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
     docker-php-ext-install gd
@@ -59,6 +59,7 @@ RUN curl -fSL https://download.dokuwiki.org/src/dokuwiki/dokuwiki-${DOKU_VER}.tg
          -o ${doku_file}
 
 # Add pipefail for md5sum and check md5
+RUN apk add bash bash-doc bash-completion
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN echo "${DOKU_MD5}  ${doku_file}" | md5sum -c && \
     tar -xz --strip-components=1 -f ${doku_file}
