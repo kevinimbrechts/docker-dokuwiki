@@ -2,7 +2,7 @@ version: '3'
 
 services:
   dokuwiki:
-    image: kimbrechts/docker-dokuwiki:latest
+    image: kimbrechts/docker-dokuwiki:nginx-aarch64
     container_name: dokuwiki
     restart: always
     ports:
