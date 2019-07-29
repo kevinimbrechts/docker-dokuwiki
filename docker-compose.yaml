@@ -6,7 +6,7 @@ services:
     container_name: dokuwiki
     restart: always
     ports:
-      - '4443:4443'
+      - '4443:443'
     volumes:
       - dokuwiki_data:/var/www/html/dokuwiki/data/pages
       - /etc/letsencrypt:/etc/letsencrypt

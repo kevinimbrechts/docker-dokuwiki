@@ -104,7 +104,6 @@ RUN rm ${doku_file} && \
 COPY etc/php/php-fpm.d/www.conf /etc/php/php-fpm.d/
 COPY etc/php/php-fpm.conf /etc/php/php-fpm.conf
 COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY etc/nginx/conf.d /etc/nginx/conf.d/
 COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 
