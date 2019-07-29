@@ -13,7 +13,7 @@ ARG http_port=8080
 ARG https_port=4443
 ARG doku_file="/tmp/dokuwiki.tar.gz"
 
-ENV LASTREFRESH="20190207" \
+ENV LASTREFRESH="20190729" \
     DOKU_VER="2018-04-22b" \
     DOKU_MD5="605944ec47cd5f822456c54c124df255" \
     # PHP ENV
@@ -34,6 +34,7 @@ WORKDIR /var/www/html/dokuwiki
 
 # Global installation
 RUN set -x && \
+    apk update && \
     apk add --no-cache --virtual mypack \
             curl=7.65.1-r0 \
             gzip=1.10-r0 \
