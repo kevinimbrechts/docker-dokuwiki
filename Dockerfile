@@ -1,10 +1,10 @@
 #################################
-###        PHP-FPM 7.3        ###
-###         ALPINE 3.9        ###
+###        PHP-FPM 8.0        ###
+###        ALPINE 3.14        ###
 ###    DOKUWIKI 2018-04-22b   ###
 #################################
 
-FROM php:fpm-alpine
+FROM php:8.0.13-fpm-alpine3.14
 LABEL maintainer="Kevin Imbrechts <imbrechts.kevin@protonmail.com>"
 
 ARG user="www-data"
@@ -13,9 +13,9 @@ ARG http_port=8080
 ARG https_port=4443
 ARG doku_file="/tmp/dokuwiki.tar.gz"
 
-ENV LASTREFRESH="20190729" \
-    DOKU_VER="2018-04-22b" \
-    DOKU_MD5="605944ec47cd5f822456c54c124df255" \
+ENV LASTREFRESH="20211129" \
+    DOKU_VER="2020-07-29" \
+    DOKU_MD5="8867b6a5d71ecb5203402fe5e8fa18c9" \
     # PHP ENV
     PHP_FPM_USER=${user} \
     PHP_FPM_GROUP=${group} \
@@ -36,19 +36,19 @@ WORKDIR /var/www/html/dokuwiki
 RUN set -x && \
     apk update && \
     apk add --no-cache --virtual mypack \
-            curl=7.65.1-r0 \
-            gzip=1.10-r0 \
+            curl=7.79.1-r0 \
+            gzip=1.10-r1 \
             libpng-dev=1.6.37-r1 \
-            jpeg-dev=8-r6 \
-            nginx=1.16.0-r2 \
-            supervisor=3.3.5-r0 \
-            shadow=4.6-r2 \
-            tar=1.32-r0 && \
-    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
+            jpeg-dev=9d-r1 \
+            nginx=1.20.2-r0 \
+            supervisor=4.2.2-r2 \
+            shadow=4.8.1-r0 \
+            tar=1.34-r0 && \
+    docker-php-ext-configure gd --with-jpeg && \
     docker-php-ext-install gd
 
 RUN usermod -u 1000 www-data && \
-	groupmod -g 1000 www-data && \
+    groupmod -g 1000 www-data && \
     apk del shadow
 
 # Timezone
