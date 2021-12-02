@@ -4,7 +4,7 @@
 ###    DOKUWIKI 2018-04-22b   ###
 #################################
 
-FROM php:8.0.13-fpm-alpine3.14
+FROM php:7.4.26-fpm-alpine3.15
 LABEL maintainer="Kevin Imbrechts <imbrechts.kevin@protonmail.com>"
 
 ARG user="www-data"
@@ -13,7 +13,7 @@ ARG http_port=8080
 ARG https_port=4443
 ARG doku_file="/tmp/dokuwiki.tar.gz"
 
-ENV LASTREFRESH="20211129" \
+ENV LASTREFRESH="20211202" \
     DOKU_VER="2020-07-29" \
     DOKU_MD5="8867b6a5d71ecb5203402fe5e8fa18c9" \
     # PHP ENV
