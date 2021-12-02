@@ -67,7 +67,7 @@ RUN echo "${DOKU_MD5}  ${doku_file}" | md5sum -c && \
 
 # PHP & NginX config
 RUN ln -s /usr/local/etc /etc/php && \
-    rm -f /etc/nginx/conf.d/default.conf && \
+    rm -f /etc/nginx/http.d/default.conf && \
     rm -f /etc/php/php-fpm.d/www.conf.default && \
     rm -f /etc/php/php-fpm.conf.default
 
@@ -104,6 +104,7 @@ RUN rm ${doku_file} && \
 COPY etc/php/php-fpm.d/www.conf /etc/php/php-fpm.d/
 COPY etc/php/php-fpm.conf /etc/php/php-fpm.conf
 COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY etc/nginx/http.d /etc/nginx/http.d
 COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 
