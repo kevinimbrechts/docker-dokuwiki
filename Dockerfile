@@ -28,7 +28,7 @@ ENV LASTREFRESH="20211129" \
     PHP_DISPLAY_STARTUP_ERRORS="On" \
     PHP_ERROR_REPORTING="E_COMPILE_ERROR\|E_RECOVERABLE_ERROR\|E_ERROR\|E_CORE_ERROR" \
     PHP_CGI_FIX_PATHINFO=0 \
-    PHP_FPM_LISTEN="/opt/run/php/php7.3-fpm.sock"
+    PHP_FPM_LISTEN="/opt/run/php/php-fpm.sock"
 
 WORKDIR /var/www/html/dokuwiki
 
@@ -102,9 +102,10 @@ RUN rm ${doku_file} && \
     rm /usr/local/etc/php/php.ini-development
 
 COPY etc/php/php-fpm.d/www.conf /etc/php/php-fpm.d/
+COPY etc/php/php-fpm.d/zz-docker.conf /etc/php/php-fpm.d/
 COPY etc/php/php-fpm.conf /etc/php/php-fpm.conf
 COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY etc/nginx/http.d /etc/nginx/http.d
+COPY etc/nginx/http.d/ /etc/nginx/http.d/
 COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 
